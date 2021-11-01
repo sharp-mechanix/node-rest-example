@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 import { CreateUserRequestDto, ListUsersQueryDto, UpdateUserRequestDto, UserDto } from '../contracts/users';
 
 /**

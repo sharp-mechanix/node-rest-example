@@ -1,5 +1,5 @@
 import express from 'express';
-import postsRouter from './routes/posts.router';
+import postsRouter from './routes/posts.routes';
 import usersRouter from './routes/users.routes'
 
 const app = express();

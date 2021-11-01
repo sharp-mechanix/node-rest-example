@@ -30,7 +30,15 @@ router.put('/users', async (request: Request, response: Response) => {
     const updateUserRequest = request.body as UpdateUserRequestDto;
 
     response.json(await controller.updateUser(updateUserRequest));
-})
+});
+
+router.delete('/users/:id', async (request: Request, response: Response) => {
+    const id = parseInt(request.params.id, 10);
+
+    await controller.deleteUser(id);
+
+    response.status(200);
+});
 
 /**
  * Connects 'users' API endpoint with controller
