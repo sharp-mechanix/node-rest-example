@@ -22,8 +22,6 @@ class UsersController {
             }
         });
 
-        console.log(users);
-
         return users;
     }
 
