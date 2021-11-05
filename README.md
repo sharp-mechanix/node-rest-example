@@ -1,5 +1,10 @@
 # Node.JS REST API
 
+Used libraries:
+- [express.js](https://expressjs.com/) as HTTP server
+- [Prisma](https://www.prisma.io/) as ORM
+- [AutoMapper](https://automapperts.netlify.app/) for mapping entities to DTOs
+
 Steps to run this project:
 
 1. Run `npm install` command
