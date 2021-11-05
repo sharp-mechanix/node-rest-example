@@ -4,6 +4,7 @@ Used libraries:
 - [express.js](https://expressjs.com/) as HTTP server
 - [Prisma](https://www.prisma.io/) as ORM
 - [AutoMapper](https://automapperts.netlify.app/) for mapping entities to DTOs
+- [FluentValidation](https://github.com/alexjpotter/fluentvalidation-ts) for validating requests
 
 Steps to run this project:
 
