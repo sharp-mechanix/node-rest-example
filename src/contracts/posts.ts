@@ -1,7 +1,7 @@
 /**
  * Posts search query parameters
  */
-export type ListPostsQueryDto = {
+export type ListPostsQuery = {
     title?: string;
     content?: string;
     createdAt?: Date;
@@ -21,7 +21,7 @@ export type PostDto = {
 /**
  * Create post request parameters
  */
-export type CreatePostRequestDto = {
+export type CreatePostRequest = {
     title: string;
     content?: string;
     authorId: number;
@@ -31,7 +31,7 @@ export type CreatePostRequestDto = {
 /**
  * Update post request parameters
  */
-export type UpdatePostRequestDto = {
+export type UpdatePostRequest = {
     id: number;
     title?: string;
     content?: string;
@@ -41,6 +41,6 @@ export type UpdatePostRequestDto = {
 /**
  * Publish post request parameters
  */
-export type PublishPostRequestDto = {
+export type PublishPostRequest = {
     id: number;
 }

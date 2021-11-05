@@ -1,5 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { CreateUserRequestDto, ListUsersQueryDto, UpdateUserRequestDto, UserDto } from '../contracts/users';
+import { Post, PrismaClient, User } from '@prisma/client';
+import { CreateUserRequest, ListUsersQuery, UpdateUserRequest, UserDto } from '../contracts/users';
+import { mapper } from "../mapping/mapper";
 
 /**
  * API for managing users
@@ -9,7 +10,7 @@ class UsersController {
      * Returns users with their posts
      * @param query Search query
      */
-    async listUsers(query: ListUsersQueryDto): Promise<UserDto[]> {
+    async listUsers(query: ListUsersQuery): Promise<UserDto[]> {
         const prisma = new PrismaClient();
 
         const users = await prisma.user.findMany({
@@ -22,7 +23,7 @@ class UsersController {
             }
         });
 
-        return users;
+        return users.map((user: User & { posts: Post[] }) => mapper.map(user, 'UserDto', 'UserWithPosts'));
     }
 
     /**
@@ -44,7 +45,7 @@ class UsersController {
     /**
      * Creates user with given name and email
      */
-    async createUser(request: CreateUserRequestDto): Promise<UserDto> {
+    async createUser(request: CreateUserRequest): Promise<UserDto> {
         const prisma = new PrismaClient();
 
         const newUser = await prisma.user.create({
@@ -60,7 +61,7 @@ class UsersController {
     /**
      * Updates user by ID
      */
-    async updateUser(request: UpdateUserRequestDto): Promise<UserDto> {
+    async updateUser(request: UpdateUserRequest): Promise<UserDto> {
         const prisma = new PrismaClient();
 
         const updatedUser = await prisma.user.update({

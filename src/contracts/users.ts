@@ -3,7 +3,7 @@ import { PostDto } from "./posts"
 /**
  * Users search query parameters
  */
-export type ListUsersQueryDto = {
+export type ListUsersQuery = {
     email?: string;
     name?: string;
 }
@@ -21,7 +21,7 @@ export type UserDto = {
 /**
  * Create user request parameters
  */
-export type CreateUserRequestDto = {
+export type CreateUserRequest = {
     email: string;
     name?: string;
 }
@@ -29,7 +29,7 @@ export type CreateUserRequestDto = {
 /**
  * Update user request parameters
  */
-export type UpdateUserRequestDto = {
+export type UpdateUserRequest = {
     id: number,
     email?: string;
     name?: string;

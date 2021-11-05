@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { CreatePostRequestDto, ListPostsQueryDto as ListPostsQueryDto, PostDto, PublishPostRequestDto, UpdatePostRequestDto } from '../contracts/posts';
-
+import { Post, PrismaClient } from '@prisma/client';
+import { CreatePostRequest, ListPostsQuery as ListPostsQuery, PostDto, PublishPostRequest, UpdatePostRequest } from '../contracts/posts';
+import { mapper } from "../mapping/mapper";
 /**
  * Test controller just to make sure server works
  */
@@ -8,7 +8,7 @@ class PostsController {
     /**
      * Returns test string
      */
-    async getPosts(request: ListPostsQueryDto): Promise<PostDto[]> {
+    async getPosts(request: ListPostsQuery): Promise<PostDto[]> {
         const prisma = new PrismaClient();
 
         const posts = await prisma.post.findMany({
@@ -19,7 +19,7 @@ class PostsController {
             }
         });
 
-        return posts;
+        return posts.map((post: Post) => mapper.map(post, 'PostDto', 'Post'));
     }
 
     /**
@@ -36,7 +36,7 @@ class PostsController {
     /**
      * Creates new post
      */
-    async createPost(request: CreatePostRequestDto): Promise<PostDto> {
+    async createPost(request: CreatePostRequest): Promise<PostDto> {
         const prisma = new PrismaClient();
 
         const newPost = await prisma.post.create({
@@ -54,7 +54,7 @@ class PostsController {
     /**
      * Creates new post
      */
-     async updatePost(request: UpdatePostRequestDto): Promise<PostDto> {
+     async updatePost(request: UpdatePostRequest): Promise<PostDto> {
         const prisma = new PrismaClient();
 
         const updatedPost = await prisma.post.update({

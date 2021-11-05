@@ -1,12 +1,12 @@
 import { Router, Request, Response } from 'express';
 import UsersController from '../controllers/users.controller';
-import { CreateUserRequestDto, ListUsersQueryDto, UpdateUserRequestDto } from '../contracts/users';
+import { CreateUserRequest, ListUsersQuery, UpdateUserRequest } from '../contracts/users';
 
 const router = Router();
 const controller = new UsersController();
 
 router.get('/users', async (request: Request, response: Response) => {
-    const query: ListUsersQueryDto = {
+    const query: ListUsersQuery = {
         email: request.query.email as string,
         name: request.query.email as string
     }
@@ -21,13 +21,13 @@ router.get('/users/:id', async (request: Request, response: Response) => {
 });
 
 router.post('/users', async (request: Request, response: Response) => {
-    const newUserRequest = request.body as CreateUserRequestDto;
+    const newUserRequest = request.body as CreateUserRequest;
 
     response.json(await controller.createUser(newUserRequest));
 });
 
 router.put('/users', async (request: Request, response: Response) => {
-    const updateUserRequest = request.body as UpdateUserRequestDto;
+    const updateUserRequest = request.body as UpdateUserRequest;
 
     response.json(await controller.updateUser(updateUserRequest));
 });
